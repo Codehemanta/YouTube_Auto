@@ -1,0 +1,20 @@
+{
+   "app_description": {
+      "message": "Me gusta y suscríbete automáticamente desde YouTube!"
+   },
+   "app_name": {
+      "message": "YouTube Automático"
+   },
+   "ads":{
+      "message": "Bloqueo de anuncios"
+   },
+   "like":{
+      "message": "como automático"
+   },
+   "subscribe":{
+      "message": "suscribir automático"
+   },
+   "rate":{
+      "message": "Por favor ayúdenos y califíquenos!"
+   }
+}

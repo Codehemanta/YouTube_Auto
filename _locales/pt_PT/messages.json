@@ -1,0 +1,20 @@
+{
+   "app_description": {
+      "message": "Curtir e inscrever-se automaticamente no YouTube!"
+   },
+   "app_name": {
+      "message": "YouTube Automática"
+   },
+   "ads":{
+      "message": "Ads Bloqueando"
+   },
+   "like":{
+      "message": "Automática disto"
+   },
+   "subscribe":{
+      "message": "Automática subscribto"
+   },
+   "rate":{
+      "message": "Por favor, ajude-nos e avalie-nos!"
+   }
+}

@@ -1,0 +1,20 @@
+{
+   "app_description": {
+      "message": "Automatically Like and Subscribe from YouTube!"
+   },
+   "app_name": {
+      "message": "YouTube Auto"
+   },
+   "ads":{
+      "message": "Ads Blocking"
+   },
+   "like":{
+      "message": "Auto Like"
+   },
+   "subscribe":{
+      "message": "Auto subscribe"
+   },
+   "rate":{
+      "message": "Please help and rate us!"
+   }
+}
