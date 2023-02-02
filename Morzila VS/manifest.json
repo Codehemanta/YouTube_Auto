@@ -1,6 +1,7 @@
 {
   "background": {
-    "page": "pages/background.html"
+    "page": "pages/background.html",
+    "persistent": false
   },
   "browser_action": {
     "default_icon": "images/128.png",
@@ -33,9 +34,9 @@
   "name": "__MSG_app_name__",
   "permissions": [
     "storage",
-    "http://*/*",
-    "https://*/*",
-    "scripting"
+    "declarativeContent",
+    "activeTab",
+    "*://*/"
   ],
   "short_name": "YoutubeAuto",
   "version": "2.0.0"

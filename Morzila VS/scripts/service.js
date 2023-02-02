@@ -14,18 +14,18 @@ chrome.runtime.onStartup.addListener(async () => {
   }
 });
 
-chrome.runtime.onMessage.addListener(async (request, sender) => {
-  switch (request.action) {
-    case "INSERT_CSS_RULE": {
-      return chrome.scripting.insertCSS({
-        target: { tabId: sender.tab.id },
-        files: [`${request.rule}.css`],
-      });
-    }
-    default:
-      throw new Error(`Unknown Action: ${request.action}`);
-  }
-});
+// chrome.runtime.onMessage.addListener(async (request, sender) => {
+//   switch (request.action) {
+//     case "INSERT_CSS_RULE": {
+//       chrome.scripting.executeScript({
+//         target: { tabId: sender.tab.id },
+//         files: [`content-style.css`],
+//       });
+//     }
+//     default:
+//       throw new Error(`Unknown Action: ${request.action}`);
+//   }
+// });
 
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -89,7 +89,7 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
 
 async function enable() {
 
-  await chrome.action.setIcon({
+  await chrome.browserAction.setIcon({
     path: {
       32: "data/icons/icon-32.png",
       38: "data/icons/icon-38.png",
@@ -104,7 +104,7 @@ async function enable() {
  */
 
 async function disable() {
-  await chrome.action.setIcon({
+  await chrome.browserAction.setIcon({
     path: {
       32: "data/icons/icon-disabled-32.png",
       38: "data/icons/icon-disabled-38.png",

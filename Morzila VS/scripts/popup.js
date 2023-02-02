@@ -1,110 +1,134 @@
-/**
- * By @Codehemu - ( JS: MIT License)
- * License - https://github.com/hemucode/LICENSE ( CSS: MIT License)
- */
 async function init() {
-  try {
-    var a = new Promise(function(resolve, reject){
-          chrome.storage.sync.get({"enabled": true}, function(options){
-              resolve(options.enabled);
-          })
-      });
+  return Promise.all([translate(), hydrate()]);
+}
 
-    const enabled = await a;
-    console.log(enabled + " enabled");
+function translate() {
+  return new Promise((resolve) => {
+    const elements = document.querySelectorAll("[data-message]");
+    for (const element of elements) {
+      const key = element.dataset.message;
+      const message = chrome.i18n.getMessage(key);
+      if (message) {
+        element.textContent = message;
+      } else {
+        console.error("Missing chrome.i18n message:", key);
+      }
+    }
+    resolve();
+  });
+}
 
-    var d = new Promise(function(resolve, reject){
-        chrome.storage.sync.get({"videosubscribe":true}, function(options){
-            resolve(options.videosubscribe);
+/**
+ * @returns Promise
+ */
+async function hydrate() {
+
+   var a = new Promise(function(resolve, reject){
+        chrome.storage.sync.get({"enabled": true}, function(options){
+            resolve(options.enabled);
         })
     });
-    const videosubscribe = await d;
-    console.log(videosubscribe + " videosubscribe");
 
-    var c = new Promise(function(resolve, reject){
+  const enabled = await a;
+  console.log(enabled);
+
+
+  // Hydrate Logo
+  const $logo = document.querySelector(".logo");
+  $logo.style.filter = enabled ? "grayscale(0)" : "grayscale(100%)";
+  $logo.style.opacity = enabled ? "1" : "0.7";
+
+
+  // Hydrate Checkbox Label
+  const $checkboxLabel = document.querySelector("[data-message=adsblock]");
+  $checkboxLabel.textContent = chrome.i18n.getMessage(
+    enabled ? "adsblock" : "adsunblock"
+  );
+
+  // Hydrate Checkbox Label
+  const $enabledCheckbox = document.querySelector("input[name=ads]");
+  $enabledCheckbox.checked = enabled;
+  $enabledCheckbox.addEventListener("change", async (event) => {
+    const enabled = event.currentTarget.checked;
+
+    // Persist
+    await chrome.storage.sync.set({ enabled });
+
+    // Update Checkbox Label
+    $checkboxLabel.textContent = chrome.i18n.getMessage(
+      enabled ? "adsblock" : "adsunblock"
+    );
+
+    // Update Logo
+    $logo.style.filter = enabled ? "grayscale(0)" : "grayscale(100%)";
+    $logo.style.opacity = enabled ? "1" : "0.7";
+  });
+
+
+  var c = new Promise(function(resolve, reject){
         chrome.storage.sync.get({"videolike": true}, function(options){
             resolve(options.videolike);
         })
     });
 
-    const videolike = await c;
-    console.log(videolike + " videolike");
-
-      if (videolike) {
-        console.log("videolike Run...");
-        setInterval(()=>{
-          likebtn = document.querySelector("#segmented-like-button > ytd-toggle-button-renderer > yt-button-shape > button");
-          if (likebtn && likebtn.getAttribute("aria-pressed") == "false") {
-            likebtn.click();console.log("Auto Like");
-          }
-        },2000)
-    }
-
-    if (videosubscribe) {
-      console.log("videosubscribe Run...");
-        setInterval(()=>{
-          sub = document.getElementsByClassName("ytd-subscribe-button-renderer")[1];
-          subscribeduse = document.querySelector(".style-scope.ytd-subscribe-button-renderer[subscribed]");
-          if (sub && !(subscribeduse)) {
-            sub.click();console.log("Subscribe");
-          }
-        },2000)
-    }
+  const videolike = await c;
+  console.log(videolike);
 
 
-    console.log(`[YouTube Auto™ v${chrome.runtime.getManifest().version} Enabled]`);
-    console.log(`Cloned by https://chrome.google.com/webstore/detail/${chrome.runtime.id}`)
+
+  // Hydrate Checkbox Label
+  const $checkboxLabel_2 = document.querySelector("[data-message=autolike]");
+  $checkboxLabel_2.textContent = chrome.i18n.getMessage(
+    videolike ? "autolike" : "manuallike"
+  );
+
+  // Hydrate Checkbox Label
+  const $enabledCheckbox_2 = document.querySelector("input[name=like]");
+  $enabledCheckbox_2.checked = videolike;
+  $enabledCheckbox_2.addEventListener("change", async (event) => {
+    const videolike = event.currentTarget.checked;
+
+    // Persist
+    await chrome.storage.sync.set({ videolike });
+
+    // Update Checkbox Label
+    $checkboxLabel_2.textContent = chrome.i18n.getMessage(
+      videolike ? "autolike" : "manuallike"
+    );
+  });
 
 
-    // console.log(enabled);
 
-    if (enabled) {
-      setInterval(()=>{
-          const btn=document.querySelector(".ytp-ad-skip-button");
-          if(btn) {btn.click();}
-          if( ! document.querySelector('.ad-showing') ) return
-                const video=document.querySelector('video')
-                if( ! video)  return
-                if(btn) {
-                  btn.click()
-                } else {
-                  video.currentTime = isNaN(video.duration) ? 0 : video.duration
-                }
-      },300);
-      await Promise.all([injectStyles(), injectMainScript("sctipts/scriptlets.js")]);
-    }
+  var d = new Promise(function(resolve, reject){
+        chrome.storage.sync.get({"videosubscribe": true}, function(options){
+            resolve(options.videosubscribe);
+        })
+  });
 
-  }
-  catch(err) {
-    console.log(err.message);
-  }
- 
+  const videosubscribe = await d;
+  console.log(videosubscribe);
+
+  const $checkboxLabel_S = document.querySelector("[data-message=autosubscribe]");
+  $checkboxLabel_S.textContent = chrome.i18n.getMessage(
+    videosubscribe ? "autosubscribe" : "manualsubscribe"
+  );
+
+  // Hydrate Checkbox Label
+  const $enabledCheckbox_S = document.querySelector("input[name=subscribe]");
+  $enabledCheckbox_S.checked = videosubscribe;
+  $enabledCheckbox_S.addEventListener("change", async (event) => {
+    const videosubscribe = event.currentTarget.checked;
+
+    // Persist
+    await chrome.storage.sync.set({ videosubscribe });
+
+    // Update Checkbox Label
+    $checkboxLabel_S.textContent = chrome.i18n.getMessage(
+      videosubscribe ? "autosubscribe" : "manualsubscribe"
+    );
+  });
+  document.querySelector(".teaser").href = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}`
+
 }
+
 init();
-
-/**
- * @returns Promise
- */
-
-function injectStyles() {
-  return chrome.runtime.sendMessage({
-    action: "INSERT_CSS_RULE",
-    rule: "content-style",
-  });
-}
-
-/**
- * @returns Promise
- */
-function injectMainScript(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = chrome.runtime.getURL(src);
-    script.onload = function () {
-      this.remove();
-      resolve();
-    };
-    script.onerror = reject;
-    (document.head || document.documentElement).appendChild(script);
-  });
-}
