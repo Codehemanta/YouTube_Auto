@@ -1,20 +1,30 @@
 {
    "app_description": {
-      "message": "Curtir e inscrever-se automaticamente no YouTube!"
+      "message": "Automatically Like and Subscribe from YouTube!"
    },
    "app_name": {
-      "message": "YouTube Automática"
-   },
-   "ads":{
-      "message": "Ads Bloqueando"
-   },
-   "like":{
-      "message": "Automática disto"
-   },
-   "subscribe":{
-      "message": "Automática subscribto"
+      "message": "YouTube Auto"
    },
    "rate":{
-      "message": "Por favor, ajude-nos e avalie-nos!"
+      "message": "Please help and rate us!"
+   },
+   "autolike":{
+      "message": "Auto Like"
+   },
+   "manuallike":{
+      "message": "Manual Like"
+   },
+   "autosubscribe":{
+      "message": "Auto subscribe"
+   },
+   "manualsubscribe":{
+      "message": "Manual subscribe"
+   },
+   "adsblock": {
+      "message": "Ads Block"
+   },
+   "adsunblock": {
+      "message": "Ads Unblock"
    }
+
 }
