@@ -1,7 +1,7 @@
 {
-  "background": {
-    "page": "pages/background.html"
-  },
+  // "background": {
+  //   "page": "pages/background.html"
+  // },
   "browser_action": {
     "default_icon": "images/icon-128.png",
     "default_popup": "pages/popup.html",
@@ -13,9 +13,7 @@
       "js": [
         "scripts/inject.js"
       ],
-      "matches": [
-        "*://*.youtube.com/*"
-      ],
+      "matches": ["*://*.youtube.com/*","*://youtube.com/*", "*://www.youtube.com/*", "*://m.youtube.com/*"],
       "run_at": "document_start"
     }
   ],

@@ -1,4 +1,5 @@
-async function init() {
+alert("fdg");
+function init() {
   return Promise.all([translate(), hydrate()]);
 }
 
@@ -21,10 +22,10 @@ function translate() {
 /**
  * @returns Promise
  */
-async function hydrate() {
+function hydrate() {
 
    var a = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"enabled": true}, function(options){
+        chrome.storage.sync.get({"enabled": true}, function(options){
             resolve(options.enabled);
         })
     });
@@ -52,7 +53,7 @@ async function hydrate() {
     const enabled = event.currentTarget.checked;
 
     // Persist
-    await browser.storage.sync.set({ enabled });
+    await chrome.storage.sync.set({ enabled });
 
     // Update Checkbox Label
     $checkboxLabel.textContent = chrome.i18n.getMessage(
@@ -66,7 +67,7 @@ async function hydrate() {
 
 
   var c = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"videolike": true}, function(options){
+        chrome.storage.sync.get({"videolike": true}, function(options){
             resolve(options.videolike);
         })
     });
@@ -89,7 +90,7 @@ async function hydrate() {
     const videolike = event.currentTarget.checked;
 
     // Persist
-    await browser.storage.sync.set({ videolike });
+    await chrome.storage.sync.set({ videolike });
 
     // Update Checkbox Label
     $checkboxLabel_2.textContent = chrome.i18n.getMessage(
@@ -100,7 +101,7 @@ async function hydrate() {
 
 
   var d = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"videosubscribe": true}, function(options){
+        chrome.storage.sync.get({"videosubscribe": true}, function(options){
             resolve(options.videosubscribe);
         })
   });
@@ -120,7 +121,7 @@ async function hydrate() {
     const videosubscribe = event.currentTarget.checked;
 
     // Persist
-    await browser.storage.sync.set({ videosubscribe });
+    await chrome.storage.sync.set({ videosubscribe });
 
     // Update Checkbox Label
     $checkboxLabel_S.textContent = chrome.i18n.getMessage(

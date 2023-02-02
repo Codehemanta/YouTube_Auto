@@ -1,6 +1,7 @@
+alert("fdg");
 chrome.runtime.onStartup.addListener(async () => {
   var a = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"enabled": true}, function(options){
+        chrome.storage.sync.get({"enabled": true}, function(options){
             resolve(options.enabled);
       })
   });
@@ -30,12 +31,12 @@ chrome.runtime.onMessage.addListener(async (request, sender) => {
 chrome.runtime.onInstalled.addListener(async (details) => {
   switch (details.reason) {
     case chrome.runtime.OnInstalledReason.INSTALL:
-      return browser.storage.sync.set({
+      return chrome.storage.sync.set({
         installDate: Date.now(),
         installVersion: chrome.runtime.getManifest().version,
       });
     case chrome.runtime.OnInstalledReason.UPDATE:
-      return browser.storage.sync.set({
+      return chrome.storage.sync.set({
         updateDate: Date.now(),
       });
   }
@@ -43,7 +44,7 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 
 
 
-browser.storage.onChanged.addListener(async (changes, namespace) => {
+chrome.storage.onChanged.addListener(async (changes, namespace) => {
   if (namespace !== "sync") return;
 
   if (changes.enabled) {
@@ -55,7 +56,7 @@ browser.storage.onChanged.addListener(async (changes, namespace) => {
   }
 });
 
-browser.storage.onChanged.addListener(async (changes, namespace) => {
+chrome.storage.onChanged.addListener(async (changes, namespace) => {
   if (namespace !== "sync") return;
 
   if (changes.videolike) {
@@ -67,7 +68,7 @@ browser.storage.onChanged.addListener(async (changes, namespace) => {
   }
 });
 
-browser.storage.onChanged.addListener(async (changes, namespace) => {
+chrome.storage.onChanged.addListener(async (changes, namespace) => {
   if (namespace !== "sync") return;
 
   if (changes.videosubscribe) {

@@ -2,10 +2,12 @@
  * By @Codehemu - ( JS: MIT License)
  * License - https://github.com/hemucode/LICENSE ( CSS: MIT License)
  */
-async function init() {
+alert("fdg");
+console.log("okk")
+function init() {
   try {
     var a = new Promise(function(resolve, reject){
-          browser.storage.sync.get({"enabled": true}, function(options){
+          chrome.storage.sync.get({"enabled": true}, function(options){
               resolve(options.enabled);
           })
       });
@@ -14,7 +16,7 @@ async function init() {
     console.log(enabled + " enabled");
 
     var d = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"videosubscribe":true}, function(options){
+        chrome.storage.sync.get({"videosubscribe":true}, function(options){
             resolve(options.videosubscribe);
         })
     });
@@ -22,7 +24,7 @@ async function init() {
     console.log(videosubscribe + " videosubscribe");
 
     var c = new Promise(function(resolve, reject){
-        browser.storage.sync.get({"videolike": true}, function(options){
+        chrome.storage.sync.get({"videolike": true}, function(options){
             resolve(options.videolike);
         })
     });
