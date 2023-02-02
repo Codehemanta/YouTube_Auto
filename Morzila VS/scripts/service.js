@@ -14,18 +14,18 @@ chrome.runtime.onStartup.addListener(async () => {
   }
 });
 
-// chrome.runtime.onMessage.addListener(async (request, sender) => {
-//   switch (request.action) {
-//     case "INSERT_CSS_RULE": {
-//       chrome.scripting.executeScript({
-//         target: { tabId: sender.tab.id },
-//         files: [`content-style.css`],
-//       });
-//     }
-//     default:
-//       throw new Error(`Unknown Action: ${request.action}`);
-//   }
-// });
+chrome.runtime.onMessage.addListener(async (request, sender) => {
+  switch (request.action) {
+    case "INSERT_CSS_RULE": {
+      chrome.scripting.executeScript({
+        target: { tabId: sender.tab.id },
+        files: [`../content-style.css`],
+      });
+    }
+    default:
+      throw new Error(`Unknown Action: ${request.action}`);
+  }
+});
 
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -88,15 +88,14 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
  */
 
 async function enable() {
-
-  await chrome.browserAction.setIcon({
+  chrome.browserAction.setIcon({
     path: {
-      32: "images/icon-32.png",
-      38: "images/icon-38.png",
-      128: "images/icon-128.png",
+      32: "../images/icon-32.png",
+      38: "../images/icon-38.png",
+      128: "../images/icon-128.png",
     },
   });
-  await reloadAffectedTab();
+  reloadAffectedTab();
 }
 
 /**
@@ -104,26 +103,35 @@ async function enable() {
  */
 
 async function disable() {
-  await chrome.browserAction.setIcon({
+  chrome.browserAction.setIcon({
     path: {
-      32: "images/icon-disabled-32.png",
-      38: "images/icon-disabled-38.png",
-      128: "images/icon-disabled-128.png",
+      32: "../images/icon-disabled-32.png",
+      38: "../images/icon-disabled-38.png",
+      128: "../images/icon-disabled-128.png",
+
     },
   });
-  await reloadAffectedTab();
+  reloadAffectedTab();
 }
 
 /**
  * @returns Promise
  */
 async function reloadAffectedTab() {
-  const [currentTab] = await chrome.tabs.query({
-    active: true,
-    url: "*://*.youtube.com/*",
+  // const [currentTab] = chrome.tabs.query({
+  //   active: true,
+  //   url: "*://*.youtube.com/*",
+  // });
+  // const isTabAffected = Boolean(currentTab?.url);
+  // if (isTabAffected) {
+  //   return chrome.tabs.reload();
+  // }
+
+  // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  //    return chrome.tabs.reload();
+  // });
+  chrome.tabs.query({url: "*://*.youtube.com/*"}, function(tab) {
+   // reload tab with one of the methods from linked answer
+   chrome.tabs.reload(tab[0].id) 
   });
-  const isTabAffected = Boolean(currentTab?.url);
-  if (isTabAffected) {
-    return chrome.tabs.reload();
-  }
 }
