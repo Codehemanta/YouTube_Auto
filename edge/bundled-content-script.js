@@ -53,7 +53,7 @@ async function init() {
 
 
     console.log(`[YouTube Auto™ v${chrome.runtime.getManifest().version} Enabled]`);
-    console.log(`Cloned by https://chrome.google.com/webstore/detail/${chrome.runtime.id}`)
+    console.log(`Cloned by https://microsoftedge.microsoft.com/addons/detail/${chrome.runtime.id}`)
 
 
     // console.log(enabled);

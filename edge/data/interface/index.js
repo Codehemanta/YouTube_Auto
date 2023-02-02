@@ -127,7 +127,7 @@ async function hydrate() {
       videosubscribe ? "autosubscribe" : "manualsubscribe"
     );
   });
-  document.querySelector(".teaser").href = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}`
+  document.querySelector(".teaser").href = `https://microsoftedge.microsoft.com/addons/detail/${chrome.runtime.id}`
 
 }
 
