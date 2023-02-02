@@ -14,18 +14,16 @@ chrome.runtime.onStartup.addListener(async () => {
   }
 });
 
-// chrome.runtime.onMessage.addListener(async (request, sender) => {
-//   switch (request.action) {
-//     case "INSERT_CSS_RULE": {
-//       return chrome.tab.executeScript({
-//         target: { tabId: sender.tab.id },
-//         files: [`content-style.css`],
-//       });
-//     }
-//     default:
-//       throw new Error(`Unknown Action: ${request.action}`);
-//   }
-// });
+chrome.runtime.onMessage.addListener(async (request, sender) => {
+  switch (request.action) {
+    case "INSERT_CSS_RULE": {
+      return chrome.tabs.insertCSS(sender.tab.id,{ file: `content-style.css`
+      });
+    }
+    default:
+      throw new Error(`Unknown Action: ${request.action}`);
+  }
+});
 
 
 chrome.runtime.onInstalled.addListener(async (details) => {
