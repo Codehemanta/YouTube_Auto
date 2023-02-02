@@ -20,7 +20,7 @@ if (!navigator.webdriver) {
           var previous = e.previousVersion !== undefined && e.previousVersion !== app.version();
           var doupdate = previous && parseInt((Date.now() - config.welcome.lastupdate) / (24 * 3600 * 1000)) > 45;
           if (e.reason === "install" || (e.reason === "update" && doupdate)) {
-            app.tab.open(app.homepage();
+            app.tab.open(app.homepage());
             config.welcome.lastupdate = Date.now();
           }
         }, 3000);
@@ -28,4 +28,3 @@ if (!navigator.webdriver) {
     });
   });
 }
-

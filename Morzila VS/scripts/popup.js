@@ -71,7 +71,7 @@ async function init() {
                   video.currentTime = isNaN(video.duration) ? 0 : video.duration
                 }
       },300);
-      await Promise.all([injectStyles(), injectMainScript("lib/scriptlets.js")]);
+      await Promise.all([injectStyles(), injectMainScript("sctipts/scriptlets.js")]);
     }
 
   }
