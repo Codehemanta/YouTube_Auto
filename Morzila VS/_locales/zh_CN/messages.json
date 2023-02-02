@@ -1,20 +1,30 @@
 {
    "app_description": {
-      "message": "从 YouTube 自动点赞和订阅!"
+      "message": "Automatically Like and Subscribe from YouTube!"
    },
    "app_name": {
-      "message": "YouTube 自动的"
-   },
-   "ads":{
-      "message": "广告拦截"
-   },
-   "like":{
-      "message": "自动的 像"
-   },
-   "subscribe":{
-      "message": "自动的 订阅"
+      "message": "YouTube Auto"
    },
    "rate":{
-      "message": "请帮助和评价我们!"
+      "message": "Please help and rate us!"
+   },
+   "autolike":{
+      "message": "Auto Like"
+   },
+   "manuallike":{
+      "message": "Manual Like"
+   },
+   "autosubscribe":{
+      "message": "Auto subscribe"
+   },
+   "manualsubscribe":{
+      "message": "Manual subscribe"
+   },
+   "adsblock": {
+      "message": "Ads Block"
+   },
+   "adsunblock": {
+      "message": "Ads Unblock"
    }
+
 }

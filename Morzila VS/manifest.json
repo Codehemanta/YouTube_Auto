@@ -10,9 +10,6 @@
   "content_scripts": [
     {
       "all_frames": true,
-      "css": [
-        "styles/inject.css"
-      ],
       "js": [
         "scripts/inject.js"
       ],
@@ -34,17 +31,10 @@
   },
   "manifest_version": 2,
   "name": "__MSG_app_name__",
-  "options_ui": {
-    "chrome_style": true,
-    "open_in_tab": true,
-    "page": "pages/options.html"
-  },
   "permissions": [
     "storage",
-    "webRequest",
     "http://*/*",
-    "https://*/*",
-    "webRequestBlocking"
+    "https://*/*"
   ],
   "short_name": "YoutubeAuto",
   "version": "2.0.0"
