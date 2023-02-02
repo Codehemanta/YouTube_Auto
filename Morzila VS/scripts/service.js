@@ -17,9 +17,9 @@ chrome.runtime.onStartup.addListener(async () => {
 chrome.runtime.onMessage.addListener(async (request, sender) => {
   switch (request.action) {
     case "INSERT_CSS_RULE": {
-      chrome.scripting.executeScript({
+      return chrome.tab.executeScript({
         target: { tabId: sender.tab.id },
-        files: [`../content-style.css`],
+        files: [`content-style.css`],
       });
     }
     default:
