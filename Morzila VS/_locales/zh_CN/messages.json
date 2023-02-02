@@ -1,0 +1,20 @@
+{
+   "app_description": {
+      "message": "从 YouTube 自动点赞和订阅!"
+   },
+   "app_name": {
+      "message": "YouTube 自动的"
+   },
+   "ads":{
+      "message": "广告拦截"
+   },
+   "like":{
+      "message": "自动的 像"
+   },
+   "subscribe":{
+      "message": "自动的 订阅"
+   },
+   "rate":{
+      "message": "请帮助和评价我们!"
+   }
+}
