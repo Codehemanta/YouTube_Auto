@@ -1,21 +1,13 @@
-/**
- * By @Codehemu - ( JS: MIT License)
- * License - https://github.com/hemucode/LICENSE ( CSS: MIT License)
- */
-console.log(`[YouTube Auto™ v${chrome.runtime.getManifest().version} Enabled]`);
-console.log(`Cloned by https://chrome.google.com/webstore/detail/${chrome.runtime.id}`)
+// /**
+//  * By @Codehemu - ( JS: MIT License)
+//  * License - https://github.com/hemucode/LICENSE ( CSS: MIT License)
+//  */
 // async function init() {
-//    chrome.storage.sync.set({key: true}, function() {
-//           console.log('Value is set to ');
-//    });
-//    chrome.storage.sync.get(['key'], function(result) {
-//           console.log('Value currently is ' + result.key);
-//     });
-
-// }init();
-console.log("run...")
-// function init() {
 //   try {
+//     console.log(`[YouTube Auto™ v${chrome.runtime.getManifest().version} Enabled]`);
+//     console.log(`Cloned by https://chrome.google.com/webstore/detail/${chrome.runtime.id}`)
+
+
 //     chrome.storage.sync.get({"videosubscribe":true}, function(options){
 //             const videosubscribe = options.videosubscribe;
 //             console.log(videosubscribe + " videosubscribe");
