@@ -17,7 +17,8 @@ chrome.runtime.onStartup.addListener(async () => {
 chrome.runtime.onMessage.addListener(async (request, sender) => {
   switch (request.action) {
     case "INSERT_CSS_RULE": {
-      return chrome.tabs.insertCSS(sender.tab.id,{ file: `content-style.css`
+      return chrome.tabs.insertCSS(sender.tab.id,{ 
+        file: `${request.rule}.css`
       });
     }
     default:
