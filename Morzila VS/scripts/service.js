@@ -91,9 +91,9 @@ async function enable() {
 
   await chrome.browserAction.setIcon({
     path: {
-      32: "data/icons/icon-32.png",
-      38: "data/icons/icon-38.png",
-      128: "data/icons/icon-128.png",
+      32: "images/icon-32.png",
+      38: "images/icon-38.png",
+      128: "images/icon-128.png",
     },
   });
   await reloadAffectedTab();
@@ -106,9 +106,9 @@ async function enable() {
 async function disable() {
   await chrome.browserAction.setIcon({
     path: {
-      32: "data/icons/icon-disabled-32.png",
-      38: "data/icons/icon-disabled-38.png",
-      128: "data/icons/icon-disabled-128.png",
+      32: "images/icon-disabled-32.png",
+      38: "images/icon-disabled-38.png",
+      128: "images/icon-disabled-128.png",
     },
   });
   await reloadAffectedTab();
