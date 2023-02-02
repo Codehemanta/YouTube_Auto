@@ -14,7 +14,7 @@ async function init() {
     console.log(enabled + " enabled");
 
     var d = new Promise(function(resolve, reject){
-        chrome.storage.sync.get({"videosubscribe":true}, function(options){
+        chrome.storage.sync.get({"videosubscribe":false}, function(options){
             resolve(options.videosubscribe);
         })
     });
@@ -22,7 +22,7 @@ async function init() {
     console.log(videosubscribe + " videosubscribe");
 
     var c = new Promise(function(resolve, reject){
-        chrome.storage.sync.get({"videolike": true}, function(options){
+        chrome.storage.sync.get({"videolike": false}, function(options){
             resolve(options.videolike);
         })
     });
