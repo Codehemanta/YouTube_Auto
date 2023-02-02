@@ -10,9 +10,6 @@
   "content_scripts": [
     {
       "all_frames": true,
-      "css": [
-        "styles/inject.css"
-      ],
       "js": [
         "scripts/inject.js"
       ],
@@ -24,7 +21,7 @@
   ],
   "default_locale": "en",
   "description": "__MSG_app_description__",
-  "homepage_url": "https://www.youtube.com/watch?v=dJTeEhwUzrg",
+  "homepage_url": "https://.com/watch?v=dJTeEhwUzrg",
   "icons": {
     "128": "images/128.png",
     "16": "images/16.png",
