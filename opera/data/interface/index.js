@@ -127,7 +127,7 @@ async function hydrate() {
       videosubscribe ? "autosubscribe" : "manualsubscribe"
     );
   });
-  document.querySelector(".teaser").href = `https://chrome.google.com/webstore/detail/${chrome.runtime.id}`
+  document.querySelector(".teaser").href = `https://addons.opera.com/extensions/details/youtube-auto-2/`
 
 }
 

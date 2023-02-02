@@ -30,5 +30,5 @@
    "name": "__MSG_app_name__",
    "permissions": ["storage", "scripting", "tabs" ],
    "short_name": "YT Auto",
-   "version": "2.0.1"
+   "version": "2.0.2"
 }
