@@ -1,4 +1,4 @@
-
+console.log("skip Run...")
 Promise.all([skip(), injectMainScript("scripts/scriptlets.js")]);
 
 function skip() {

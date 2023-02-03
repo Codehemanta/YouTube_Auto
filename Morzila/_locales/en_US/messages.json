@@ -5,26 +5,16 @@
    "app_name": {
       "message": "YouTube Auto"
    },
-   "rate":{
-      "message": "Please help and rate us!"
+   "ads":{
+      "message": "Ads Blocking"
    },
-   "autolike":{
+   "like":{
       "message": "Auto Like"
    },
-   "manuallike":{
-      "message": "Manual Like"
-   },
-   "autosubscribe":{
+   "subscribe":{
       "message": "Auto subscribe"
    },
-   "manualsubscribe":{
-      "message": "Manual subscribe"
-   },
-   "adsblock": {
-      "message": "Ads Block"
-   },
-   "adsunblock": {
-      "message": "Ads Unblock"
+   "rate":{
+      "message": "Please help and rate us!"
    }
-
 }

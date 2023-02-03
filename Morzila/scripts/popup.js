@@ -1,9 +1,9 @@
 domReady(() => {
   bindCheckboxes()
-  translate()
   initRateButton()
-  init()
-  initRateButton()
+  sendmessage()
+  translateHTML()
+
 })
 
 
@@ -15,22 +15,6 @@ function domReady (callback) {
   }
 }
 
-function translate() {
-  return new Promise((resolve) => {
-    const elements = document.querySelectorAll("[data-message]");
-    for (const element of elements) {
-      const key = element.dataset.message;
-      const message = chrome.i18n.getMessage(key);
-      if (message) {
-        element.textContent = message;
-      } else {
-        console.error("Missing chrome.i18n message:", key);
-      }
-    }
-    resolve();
-  });
-}
-
 function bindCheckboxes() {
   for (const $setting of document.querySelectorAll('.setting')) {
     const $input = $setting.querySelector('input')
@@ -40,94 +24,57 @@ function bindCheckboxes() {
     }, false)
   }
 }
-function injectMSG() {
-  return chrome.runtime.sendMessage({
-    action: "INSERT_CSS_RULE",
-    rule: "content-style",
-  });
+
+function initRateButton() {
+  document.querySelector('.teaser').href = `https://addons.mozilla.org/firefox/addon/youtubeauto/`;
 }
 
-function init(){
-  if (localStorage.ads=="false") {
-    document.querySelector("[data-message=adsblock]").textContent =chrome.i18n.getMessage("adsunblock");
-  }
+function sendmessage() {
   if (localStorage.ads) {
-    const enabled = localStorage.ads;
-    const $logo = document.querySelector(".img");
-    $logo.style.filter = enabled ? "grayscale(0)" : "grayscale(100%)";
-    $logo.style.opacity = enabled ? "1" : "0.7";
-    const $checkboxLabel = document.querySelector("[data-message=adsblock]");
-    const $enabledCheckbox = document.querySelector("input[name=ads]");
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'adsblockon')})     
 
-    // Hydrate Checkbox Label
-
-    $enabledCheckbox.addEventListener("change", async (event) => {
-      const enabled = event.currentTarget.checked;
-      injectMSG();
-      // Update Checkbox Label
-     $checkboxLabel.textContent = chrome.i18n.getMessage(
-        enabled ? "adsblock" : "adsunblock"
-      );
-
-      // Update Logo
-      $logo.style.filter = enabled ? "grayscale(0)" : "grayscale(100%)";
-      $logo.style.opacity = enabled ? "1" : "0.7";
-    });
   }
-   if (localStorage.subscribe=="false") {
-    document.querySelector("[data-message=autosubscribe]").textContent = 
-    chrome.i18n.getMessage("manualsubscribe");
+  if (localStorage.ads=="false") {
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'adsblockoff')})
   }
+
+
   if (localStorage.subscribe) {
-      const videosubscribe = localStorage.subscribe;
-      console.log("check" + videosubscribe);
-
-      const $checkboxLabel_S = document.querySelector("[data-message=autosubscribe]");
-
-      // Hydrate Checkbox Label
-      const $enabledCheckbox_S = document.querySelector("input[name=subscribe]");
-      $enabledCheckbox_S.addEventListener("change", async (event) => {
-        injectMSG();
-        const videosubscribe = event.currentTarget.checked;
-        $checkboxLabel_S.textContent = chrome.i18n.getMessage(
-          videosubscribe ? "autosubscribe" : "manualsubscribe"
-        );
-      });
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'subscribeon')})
+      
   }
-    if (localStorage.like=="false") {
-    document.querySelector("[data-message=autolike]").textContent = 
-    chrome.i18n.getMessage("manuallike");
+  if (localStorage.subscribe=="false") {
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'subscribeoff')}) 
+     
   }
+
   if (localStorage.like) {
-      const videolike = localStorage.like;
-      console.log(videolike);
-
-      // Hydrate Checkbox Label
-      const $checkboxLabel_2 = document.querySelector("[data-message=autolike]");
-
-      // Hydrate Checkbox Label
-      const $enabledCheckbox_2 = document.querySelector("input[name=like]");
-      $enabledCheckbox_2.addEventListener("change", async (event) => {
-        injectMSG();
-        const videolike = event.currentTarget.checked;
-
-        // Update Checkbox Label
-        $checkboxLabel_2.textContent = chrome.i18n.getMessage(
-          videolike ? "autolike" : "manuallike"
-        );
-      });
-
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'likeon')}) 
+   
   }
+  if (localStorage.like=="false") {
+    chrome.tabs.query({active: true, currentWindow: true},
+      function (tabs) {chrome.tabs.sendMessage(tabs[0].id, 'likeoff')}) 
+   
+  }
+
   
 }
 
-
-function initRateButton() {
-  document.querySelector('.teaser').href = `https://microsoftedge.microsoft.com/addons/detail/youtube-auto/${chrome.runtime.id}/reviews`;
+function translateHTML (dataKey = 'message') {
+  for (const $element of document.getElementsByTagName('*')) {
+    if ($element.dataset && $element.dataset[dataKey]) {
+      $element.innerText = chrome.i18n.getMessage($element.dataset[dataKey])
+    }
+  }
 }
 
 
-
-
+setInterval(sendmessage,300);
 
 
