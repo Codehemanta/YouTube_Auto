@@ -40,6 +40,12 @@ function bindCheckboxes() {
     }, false)
   }
 }
+function injectMSG() {
+  return chrome.runtime.sendMessage({
+    action: "INSERT_CSS_RULE",
+    rule: "content-style",
+  });
+}
 
 function init(){
   if (localStorage.ads=="false") {
@@ -57,8 +63,7 @@ function init(){
 
     $enabledCheckbox.addEventListener("change", async (event) => {
       const enabled = event.currentTarget.checked;
-
-
+      injectMSG();
       // Update Checkbox Label
      $checkboxLabel.textContent = chrome.i18n.getMessage(
         enabled ? "adsblock" : "adsunblock"
@@ -82,6 +87,7 @@ function init(){
       // Hydrate Checkbox Label
       const $enabledCheckbox_S = document.querySelector("input[name=subscribe]");
       $enabledCheckbox_S.addEventListener("change", async (event) => {
+        injectMSG();
         const videosubscribe = event.currentTarget.checked;
         $checkboxLabel_S.textContent = chrome.i18n.getMessage(
           videosubscribe ? "autosubscribe" : "manualsubscribe"
@@ -102,6 +108,7 @@ function init(){
       // Hydrate Checkbox Label
       const $enabledCheckbox_2 = document.querySelector("input[name=like]");
       $enabledCheckbox_2.addEventListener("change", async (event) => {
+        injectMSG();
         const videolike = event.currentTarget.checked;
 
         // Update Checkbox Label
@@ -113,7 +120,6 @@ function init(){
   }
   
 }
-
 
 
 function initRateButton() {
