@@ -60,8 +60,9 @@ chrome.runtime.onMessage.addListener(async (request, sender) => {
   switch (request.action) {
     case "INSERT_CSS_RULE": {
       chrome.tabs.query({url: "*://*.youtube.com/*"}, function(tab) {
-         chrome.tabs.reload(tab[0].id);
-         checklocalStorage();
+          chrome.tabs.insertCSS(tab[0].id,{ 
+              file: `scripts/subscribe.js`
+          });
       });
     }
   }
