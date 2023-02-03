@@ -16,7 +16,43 @@ function reloadAdsblock() {
     chrome.tabs.insertCSS(tab[0].id,{ 
       file: `styles/inject.css`
     });
+    chrome.tabs.insertCSS(tab[0].id,{ 
+      file: `scripts/skip.js`
+    });
   });
+}
+
+function reloadsubscribe() {
+  chrome.tabs.query({url: "*://*.youtube.com/*"}, function(tab) {
+    chrome.tabs.reload(tab[0].id) ;
+    chrome.tabs.insertCSS(tab[0].id,{ 
+      file: `scripts/subscribe.js`
+    });
+  });
+}
+
+function reloadlike() {
+  chrome.tabs.query({url: "*://*.youtube.com/*"}, function(tab) {
+    chrome.tabs.reload(tab[0].id) ;
+    chrome.tabs.insertCSS(tab[0].id,{ 
+      file: `scripts/like.js`
+    });
+  });
+}
+
+function checklocalStorage() {
+  if (localStorage.ads == "true") {
+      console.log("Run Adsblock...")
+      reloadAdsblock();
+  }
+  if (localStorage.like == "true") {
+      console.log("Run like...")
+      reloadlike();
+  }
+  if (localStorage.ads == "true") {
+      console.log("Run Adsblock...")
+      reloadsubscribe();
+  }
 }
 
 
@@ -26,11 +62,7 @@ chrome.runtime.onMessage.addListener(async (request, sender) => {
       chrome.tabs.query({url: "*://*.youtube.com/*"}, function(tab) {
          chrome.tabs.reload(tab[0].id);
       });
-      if (localStorage.ads == "true") {
-        console.log("Run Adsblock...")
-        reloadAdsblock();
-      }
-      console.log(localStorage.ads);
     }
   }
 });
+

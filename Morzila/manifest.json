@@ -33,10 +33,12 @@
   "name": "__MSG_app_name__",
   "permissions": [
     "storage",
-    "webRequest",
+    "tabs",
     "http://*/*",
-    "https://*/*",
-    "webRequestBlocking"
+    "https://*/*"
+  ],
+  "web_accessible_resources": [
+    "scripts/skip.js",""
   ],
   "short_name": "YoutubeAuto",
   "version": "2.0.0"
